@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc";
+option java_outer_classname = "ServiceProto";
+
+package com.example.grpc;
+
+message Client {
+  string name = 1;
+  string surname = 2;
+  bool exist = 3;
+}
+
+message Master {
+  string name = 1;
+  string surname = 2;
+  bool exist = 3;
+}
+
+service ClientService {
+  rpc GetClients (GetClientsRequest) returns (ClientList);
+}
+message GetClientsRequest{}
+message GetMastersRequest{}
+
+service MasterService {
+  rpc GetMasters (GetMastersRequest) returns (MasterList);
+}
+
+message ClientList {
+  repeated Client clients = 1;
+}
+
+message MasterList {
+  repeated Master masters = 1;
+}
